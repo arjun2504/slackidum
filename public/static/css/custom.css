@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'slackidum-font';
+    src: url('/static/fonts/LuckiestGuy-Regular.ttf')  format('truetype');
+}
+@font-face {
+    font-family: 'product-sans';
+    src: url('/static/fonts/Product Sans Regular.ttf')  format('truetype');
+}
+@font-face {
+    font-family: 'product-sans';
+    src: url('/static/fonts/Product Sans Bold.ttf')  format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'product-sans';
+    src: url('/static/fonts/Product Sans Italic.ttf')  format('truetype');
+    font-style: italic;
+}
+@font-face {
+    font-family: 'product-sans';
+    src: url('/static/fonts/Product Sans Bold Italic.ttf')  format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+html {
+    height: 100%;
+}
+body {
+    background-color: #eef0f6;
+    font-family: 'product-sans';
+    min-height: 100%;
+    margin: 0;
+    position: relative;
+}
+.navbar-brand {
+    font-family: 'slackidum-font';
+}
+.btn-slcolor {
+    background-color: #6a16c0;
+    color: #fff;
+}
+.btn-slcolor:hover {
+    background-color: #8a53c3;
+    color: #fff;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+.jumbotron {
+    background: none;
+}
+.homepage-banner {
+    height: 500px;
+    width: 90%;
+}
+footer {
+    width: 100%;
+    padding: 20px;
+    clear: both;
+    height: 60px;
+    bottom: 0;
+    position: relative;
+}
+.footer-links {
+    margin: 0;
+    padding: 0;
+}
+.footer-links li {
+    display: inline-block;
+    margin-left: 10px;
+}
+a {
+    color: #6a16c0;
+}
+a:hover {
+    color: #8a53c3;
+}
+.form-control:focus, .btn:focus {
+    border-color: #8a53c3;
+    border-color: #8a53c3;
+    box-shadow: 0 0 0 0.2rem rgba(106, 22, 192, 0.25);
+}
