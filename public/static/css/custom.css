@@ -23,13 +23,13 @@
     font-style: italic;
 }
 html {
-    height: 100%;
+    min-height: 100%;
 }
 body {
     background-color: #eef0f6;
     font-family: 'product-sans';
-    min-height: 100%;
     margin: 0;
+    height: 100%;
     position: relative;
 }
 .navbar-brand {
@@ -50,8 +50,9 @@ h1, h2, h3, h4, h5, h6 {
     background: none;
 }
 .homepage-banner {
-    height: 500px;
+    height: 300px;
     width: 90%;
+    margin-bottom: 20px;
 }
 footer {
     width: 100%;
