@@ -11,11 +11,12 @@ class Register extends Component {
         is_username_available: this.props.is_username_available
     }
 
-    formValid = () => {
+    formValid() {
         var formValid = true;
-        if (this.state.is_username_available != true) { formValid = false; }
+        if (this.props.is_username_available != true) { formValid = false; }
         if (this.state.password != this.state.password2) { formValid = false; }
         if (this.state.password.length < 6) { formValid = false; }
+        if (this.state.username.length < 3) { formValid = false; }
         return formValid;
     }
 
@@ -27,10 +28,19 @@ class Register extends Component {
 
     handleChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
-        this.props.checkAvailability(this.state);
+        var is_available = this.props.checkAvailability(this.state);
     }
 
+    componentWillReceiveProps(newProps) {
+        const oldProps = this.props
+        if(oldProps.is_username_available !== newProps.is_username_available) {
+          this.setState({ is_username_available: newProps.is_username_available })
+        }
+        this.formValid();
+      }
+
     render() {
+        const canBeSubmitted = this.formValid();
         return (
             <div className="container">
                 <div className="row justify-content-md-center">
@@ -51,7 +61,7 @@ class Register extends Component {
                                 <input type="password" onChange={this.handleChange} className="form-control" id="password2" placeholder="Password" />
                             </div>
                             
-                            <button type="submit" className="btn btn-slcolor">Register</button>
+                            <button type="submit" disabled={!canBeSubmitted} className="btn btn-slcolor">Register</button>
                         </form>
                     </div>
                 </div>

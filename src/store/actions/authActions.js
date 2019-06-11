@@ -27,7 +27,7 @@ export const checkAvailability = (registration_data) => {
             .then(res => {
                 dispatch({
                     type: 'CHECK_USERNAME_AVAILABILITY',
-                    username_available: res.data.message
+                    is_username_available: res.data.message
                 })
             });
     }
