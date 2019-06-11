@@ -110,11 +110,18 @@ a:hover {
     border: none;
 }
 .sidebar-list .list-group-item.active {
-    background-color: #8a53c3;
-    border-color: #8a53c3;
+    background: linear-gradient(to right, #8a53c3,#6a16c0);
+    /* border-color: #8a53c3; */
 }
-.sidebar-list .list-group-item-action:hover {
+.sidebar-list .list-group-item-action:hover, .sidebar-list .list-group-item-action.active:hover {
+    background: none;
     background-color: #8a53c3;
+    transition: 100ms;
+}
+.sidebar:hover > .sidebar-list .list-group-item-action.active {
+    background: none;
+    background-color: #8a53c3;
+    transition: 100ms;
 }
 .chat-screen {
     width: 100%;
@@ -123,7 +130,15 @@ a:hover {
     border-style: solid;
     border-width: 0 1px 0 0;
     border-color: #d4d4d4;
-    
+}
+.add-contact-container {
+    width: 100%;
+    min-height: 100%;
+    background-color: #fff7f9cc;
+    border-style: solid;
+    border-width: 0 1px 0 0;
+    border-color: #d4d4d4;
+    padding: 50px 50px !important;
 }
 .chat-container {
     margin-top: -3em;

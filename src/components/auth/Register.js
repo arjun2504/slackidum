@@ -1,24 +1,36 @@
 import React, { Component } from 'react'
-import { registerUser } from '../../store/actions/authActions';
+import { registerUser, checkAvailability } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 
 class Register extends Component {
 
     state = {
-        name: '',
-        email: '',
-        password: '',
-        password2: ''
+        username: this.props.username,
+        password: this.props.password,
+        password2: this.props.password2,
+        is_username_available: this.props.is_username_available
+    }
+
+    formValid = () => {
+        var formValid = true;
+        if (this.state.is_username_available != true) { formValid = false; }
+        if (this.state.password != this.state.password2) { formValid = false; }
+        if (this.state.password.length < 6) { formValid = false; }
+        return formValid;
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.registerUser(this.state);
+        console.log(this.state);
         document.getElementById('register-form').reset();
     }
 
     handleChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
+        if(e.target.id == 'username') {
+            this.props.checkAvailability(this.state);
+        }
     }
 
     render() {
@@ -30,13 +42,8 @@ class Register extends Component {
                         <hr/>
                         <form id="register-form" onSubmit={this.handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="name">Name</label>
-                                <input type="text" onChange={this.handleChange} className="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter name" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="email">Email address</label>
-                                <input type="email" onChange={this.handleChange} className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
-                                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                <label htmlFor="name">Username</label>
+                                <input type="text" onChange={this.handleChange} className="form-control" id="username" aria-describedby="usernameHelp" placeholder="Pick a username" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
@@ -46,6 +53,7 @@ class Register extends Component {
                                 <label htmlFor="password2">Re-type Password</label>
                                 <input type="password" onChange={this.handleChange} className="form-control" id="password2" placeholder="Password" />
                             </div>
+                            
                             <button type="submit" className="btn btn-slcolor">Register</button>
                         </form>
                     </div>
@@ -57,8 +65,18 @@ class Register extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        registerUser: (user) => dispatch(registerUser(user))
+        registerUser: (user) => dispatch(registerUser(user)),
+        checkAvailability: (username) => dispatch(checkAvailability(username))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Register)
+const mapStateToProps = (state) => {
+    return {
+        is_username_available: state.auth.is_username_available,
+        username: state.auth.username,
+        password: state.auth.password,
+        password2: state.auth.password2
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)
