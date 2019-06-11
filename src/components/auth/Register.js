@@ -21,16 +21,13 @@ class Register extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.registerUser(this.state);
-        console.log(this.state);
+        this.props.registerUser({ ...this.state, is_username_available: this.props.is_username_available });
         document.getElementById('register-form').reset();
     }
 
     handleChange = (e) => {
         this.setState({ [e.target.id]: e.target.value });
-        if(e.target.id == 'username') {
-            this.props.checkAvailability(this.state);
-        }
+        this.props.checkAvailability(this.state);
     }
 
     render() {

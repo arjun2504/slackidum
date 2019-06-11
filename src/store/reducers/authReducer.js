@@ -15,7 +15,7 @@ const authReducer = (state = initState, action) => {
             break;
         case 'CHECK_USERNAME_AVAILABILITY':
             console.log(action.username_available);
-            return { ...state, username_available: action.username_available };
+            return { ...state, is_username_available: action.username_available };
             break;
         default:
             return state;
