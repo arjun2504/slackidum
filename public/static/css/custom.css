@@ -26,12 +26,18 @@ html {
     min-height: 100%;
 }
 body {
-    background-color: #eef0f6;
+    /* background-color: #eef0f6; */
     font-family: 'product-sans';
     margin: 0;
-    height: 100%;
     position: relative;
+    background: url('/static/images/bg.png') repeat;
+    background-size: 400px;
+    
 }
+body > * {
+    flex-shrink: 0;
+  }
+  
 .navbar-brand {
     font-family: 'slackidum-font';
 }
@@ -60,7 +66,8 @@ footer {
     clear: both;
     height: 60px;
     bottom: 0;
-    position: relative;
+    position: absolute;
+    top: calc(100% - 0px);
 }
 .footer-links {
     margin: 0;
@@ -80,4 +87,73 @@ a:hover {
     border-color: #8a53c3;
     border-color: #8a53c3;
     box-shadow: 0 0 0 0.2rem rgba(106, 22, 192, 0.25);
+}
+.sidebar {
+    width: 100%;
+    min-height: 100%;
+    background-color: #6a16c0;
+    border-color: #4a0f87;
+    border-width: 0px 1px;
+    border-style: solid;
+}
+.sidebar-title {
+    padding: 20px;
+}
+.sidebar-list {
+    clear: both;
+}
+.sidebar-list .list-group-item {
+    border-radius: 0px;
+    padding: 3px 20px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+}
+.sidebar-list .list-group-item.active {
+    background-color: #8a53c3;
+    border-color: #8a53c3;
+}
+.sidebar-list .list-group-item-action:hover {
+    background-color: #8a53c3;
+}
+.chat-screen {
+    width: 100%;
+    min-height: 100%;
+    background-color: #fff7f9cc;
+    border-style: solid;
+    border-width: 0 1px 0 0;
+    border-color: #d4d4d4;
+    
+}
+.chat-container {
+    margin-top: -3em;
+    height: calc(100vh - 92px);
+    margin-bottom: -60px;
+}
+.chat-input-container {
+    padding: 10px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    border: 1px solid #d4d4d4;
+    border-width: 1px 0 0 0;
+}
+.chat-thread-container {
+    position: absolute;
+    bottom: 70px;
+    position: absolute;
+    bottom: 78px;
+    top: 0px;
+    overflow-y: auto;
+}
+.chat-thread-container .chat-message {
+    padding: 20px;
+    border: 1px solid #e3e1e1;
+    border-width: 1px 0 0 0;
+}
+.sidebar-btn {
+    color: #fff;
+}
+.sidebar-btn:hover {
+    color: #fff;
 }

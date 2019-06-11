@@ -27,7 +27,7 @@ class Login extends Component {
                     <div className="col-7">
                     <div className="">
                         <h1 className="display-4">Hi! There?</h1>
-                        <img src="/static/images/slackidum-banner.png" className="homepage-banner" />
+                        <img alt="Logo" src="/static/images/slackidum-banner.png" className="homepage-banner" />
                         <p className="lead">Say Hi! to your friends, family or colleagues. You can use Slackidum at any place.</p>
                         <hr className="my-4" />
                         <p>Learn more about the features.</p>
@@ -62,10 +62,10 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
+// const mapStateToProps = (state) => {
+//     return {
         
-    }
-}
+//     }
+// }
 
 export default connect(null, mapDispatchToProps)(Login)

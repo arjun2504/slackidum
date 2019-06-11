@@ -13,6 +13,8 @@ const authReducer = (state = initState, action) => {
         case 'AUTHENTICATE_USER':
             console.log('authenticating user', action.user);
             break;
+        default:
+            return state;
     }
     return state;
 }
