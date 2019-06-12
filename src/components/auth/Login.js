@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authenticateUser } from '../../store/actions/authActions';
 
 class Login extends Component {
 
     state = {
-        email: '',
+        username: '',
         password: ''
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.authenticateUser(this.state);
-        document.getElementById("login-form").reset();
+        document.getElementById('login-form').reset();
     }
 
     handleChange = (e) => {
@@ -21,6 +21,12 @@ class Login extends Component {
     }
 
     render() {
+
+        if(localStorage.getItem('token'))
+            return (
+                <Redirect to='/chat' />
+            )
+            
         return (
             <div className="container">
                 <div className="row">
@@ -39,15 +45,16 @@ class Login extends Component {
                         <hr/>
                         <form id="login-form" onSubmit={this.handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1">Email address</label>
-                                <input type="email" onChange={this.handleChange} className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
-                                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                <label htmlFor="username">Username</label>
+                                <input type="text" onChange={this.handleChange} className="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter username" />
+                                {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputPassword1">Password</label>
                                 <input type="password" onChange={this.handleChange} className="form-control" id="password" placeholder="Password" />
                             </div>
                             <button type="submit" className="btn btn-slcolor">Sign In</button>
+                            <small id="loginHelp" className="form-text text-danger">{this.props.login_message}</small>
                         </form>
                     </div>
                 </div>
@@ -62,10 +69,15 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        login_message: state.auth.login_message
+    }
+}
 // const mapStateToProps = (state) => {
 //     return {
         
 //     }
 // }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

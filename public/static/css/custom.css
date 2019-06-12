@@ -48,6 +48,7 @@ body > * {
 .btn-slcolor:hover {
     background-color: #8a53c3;
     color: #fff;
+    cursor: pointer;
 }
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
@@ -127,9 +128,31 @@ a:hover {
     width: 100%;
     min-height: 100%;
     background-color: #fff7f9cc;
-    border-style: solid;
+    border: 1px solid #d4d4d4;
     border-width: 0 1px 0 0;
-    border-color: #d4d4d4;
+}
+.no-chat-screen {
+    background-color: #fff7f9cc;
+    border: 1px solid #d4d4d4;
+    border-width: 0 1px 0 0;
+}
+.no-chat-screen .new-convo {
+    top: 35%;
+    width: 100%;
+    position: inherit;
+}
+.no-chat-screen img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: 120px;
+    width: 120px;
+}
+.no-chat-screen p {
+    font-size: 14px;
+}
+.no-chat-screen p, h3 {
+    text-align: center;
 }
 .add-contact-container {
     width: 100%;
@@ -171,4 +194,27 @@ a:hover {
 }
 .sidebar-btn:hover {
     color: #fff;
+}
+.user-suggest-container {
+    width: 100%;
+    margin-top: -13px;
+}
+.user-result {
+    padding: 5px 15px;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #efefef;
+    border-top-width: 0.2px;
+}
+.user-result:hover {
+    background-color: #6a16c0;
+    border-color: #8a53c3;
+    color: #fff;
+    cursor: pointer;
+}
+.user-added-queue {
+    margin-top: 30px;
+}
+.text-slmuted {
+    color: #af80e0;
 }

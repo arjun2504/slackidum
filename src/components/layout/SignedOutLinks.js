@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const SignedOutLinks = () => {
     return (
-        <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <div className="justify-content-end" id="navbarSupportedContent">
             <ul className="navbar-nav">
                 <li className="nav-item">
                     <NavLink to="/register" className="nav-link" title="New here? Sign up for an account">

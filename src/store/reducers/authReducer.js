@@ -2,19 +2,26 @@ const initState = {
     username: '',
     password: '',
     password2: '',
-    is_username_available: null
+    is_username_available: null,
+    is_logged_in: (localStorage.getItem('token') !== null) ? true : false,
+    login_message: '',
+    register_message: '',
+    user_id: null
 }
 
 const authReducer = (state = initState, action) => {
     switch(action.type) {
         case 'REGISTER_USER':
-            console.log('registered user', action.user);
+            return { ...state, user_id: action.user_id, register_message: action.register_message }
             break;
         case 'AUTHENTICATE_USER':
-            console.log('authenticating user', action.user);
+            return { ...state, is_logged_in: action.is_logged_in, login_message: action.login_message };
             break;
         case 'CHECK_USERNAME_AVAILABILITY':
             return { ...state, is_username_available: action.is_username_available };
+            break;
+        case 'IS_TOKEN_PRESENT':
+            return { ...state, is_logged_in: action.is_logged_in };
             break;
         default:
             return state;
