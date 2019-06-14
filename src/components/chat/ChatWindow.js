@@ -20,7 +20,7 @@ class ChatWindow extends Component {
             <div className="container">
                 <div className="row no-gutters chat-container">
                     <Sidebar room_type={this.changeRoomType} />
-                    { (this.state.room_type == 'chat') ? (<Chat {...this.props} chatType={this.state.room_type} username={this.props.match.params.username} />) : (<GroupChat {...this.props} chatType={this.state.room_type} username={this.props.match.params.group} />) }
+                    { (this.state.room_type == 'chat') ? (<Chat {...this.props} chatType={this.state.room_type} username={this.props.match.params.username} />) : (<GroupChat {...this.props} chatType={this.state.room_type} username={this.props.match.params.group} room_type={this.changeRoomType} />) }
                 </div>
             </div>
         )

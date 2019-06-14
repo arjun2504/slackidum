@@ -1,10 +1,12 @@
 import axios from 'axios';
 import history from '../../history';
 
-export const getUserSuggestions = (keyword) => {
+var opSocket = null;
+
+export const getUserSuggestions = (keyword, exclusions) => {
     return (dispatch, getState) => {
 
-        (keyword.length > 1) ? 
+        (keyword.length > 0) ? 
         axios.get('http://localhost:8000/api/user/', {
                 params: {
                     search: keyword
@@ -13,12 +15,21 @@ export const getUserSuggestions = (keyword) => {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 } })
             .then(res => {
-                dispatch({
-                    type: 'SUGGEST_USERS',
-                    suggestions: res.data.results
-                })
+
+                if(typeof exclusions !== 'undefined' && exclusions.length === 0)
+                    dispatch({
+                        type: 'SUGGEST_USERS',
+                        suggestions: res.data.results,
+                        exclusions: []
+                    })
+                else 
+                    dispatch({
+                        type: 'SUGGEST_USERS',
+                        suggestions: res.data.results,
+                        exclusions: exclusions
+                    })
             }).catch(e => {
-                (e.response.status === 403) ? history.push('/logout') : console.log(e.message)
+                (e.response && e.response.status === 403) ? history.push('/logout') : console.log(e.message)
             }) : dispatch({ type: 'SUGGEST_USERS', suggestions: [] }) 
     }
 }
@@ -51,50 +62,6 @@ export const addToContacts = (queue) => {
     }
 }
 
-export const createGroup = (queue, group_name) => {
-    return (dispatch) => {
-        var user_ids = queue.map(item => item.id);
-        axios.post('http://localhost:8000/api/group/create/',
-                    { user_ids: user_ids, name: group_name },
-                    { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
-        }).then(res => {
-            if(res.data.message){
-                dispatch({
-                    type: 'CREATE_GROUP',
-                    create_group_message: ''
-                });
-                history.push('/group/' + group_name);
-            }
-            else
-                dispatch({
-                    type: 'CREATE_GROUP',
-                    create_group_message: 'Group name already exists or some other error occurred.'
-                })
-        }).catch(e => {
-            (e.response.status === 403) ? history.push('/logout') : dispatch({
-                type: 'CREATE_GROUP',
-                create_group_message: 'Group name already exists or some other error occurred.'
-            })
-        })
-    }
-}
-
-export const getUserGroups = () => {
-    return (dispatch) => {
-        axios.get('http://localhost:8000/api/current-user/', {
-            params: { type: 'user_groups' },
-            headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
-        }).then(res => {
-            dispatch({
-                type: 'GET_USER_GROUPS',
-                groups: res.data
-            })
-        }).catch(e => {
-            (e.response.status === 403) ? history.push('/logout') : console.log(e);
-        });
-    }
-}
-
 export const getUserContacts = () => {
     return (dispatch) => {
         axios.get('http://localhost:8000/api/current-user/', {
@@ -104,7 +71,7 @@ export const getUserContacts = () => {
             dispatch({
                 type: 'GET_USER_CONTACTS',
                 contacts: res.data
-            })
+            });
         }).catch(e => {
             (e.response.status === 403) ? history.push('/logout') : console.log(e);
         });

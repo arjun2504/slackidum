@@ -44,7 +44,7 @@ export const connectToRoom = (username, room_type) => {
                 };
             
                 chatSocket.onclose = function(e) {
-                    console.error('Chat socket closed unexpectedly');
+                    console.log('disconnecting chat');
                     dispatch({
                         type: 'CLEAR_MESSAGES'
                     })

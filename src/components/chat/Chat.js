@@ -61,6 +61,7 @@ class Chat extends Component {
     }
 
     render() {
+        
         return (this.props.username) ? (
             <div className="col-md-8 col-sm-12 chat-screen">
                 <div className="chat-thread-header shadow-sm">

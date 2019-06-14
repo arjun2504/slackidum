@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UserQueue from './UserQueue';
 import { connect } from 'react-redux';
-import { createGroup } from '../../store/actions/chatActions';
+import { createGroup } from '../../store/actions/groupActions';
 
 class AddToGroupForm extends Component {
 
@@ -55,7 +55,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        create_group_message: state.chat.create_group_message
+        create_group_message: state.group.create_group_message
     }
 }
 

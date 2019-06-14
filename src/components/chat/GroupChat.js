@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { connectToRoom, sendMessage, preLoadMessages } from '../../store/actions/msgActions';
 import Moment from 'react-moment';
+import AddMoreMembers from "./AddMoreMembers";
 
 class GroupChat extends Component {
 
+
+    
     state = {
         room_name: null,
         message: '',
@@ -60,6 +63,10 @@ class GroupChat extends Component {
         this.props.preLoadMessages(this.props.username, this.state.room_type, next_page);
     }
 
+    handleRoomType = (room_type) => {
+        this.props.room_type('chat')
+    }
+
     render() {
         return (this.props.username) ? (
             <div className="col-md-8 col-sm-12 chat-screen">
@@ -96,7 +103,7 @@ class GroupChat extends Component {
                     </div>
                     <div className="col-md-4">
                         <div className="group-sidebar">
-                            
+                            <AddMoreMembers group={this.props.username} room_type={this.handleRoomType} />
                         </div>
                     </div>
                 </div>
