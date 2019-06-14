@@ -27,6 +27,8 @@ export const authenticateUser = (credentials) => {
                 
                 if(res.data.token) {
                     localStorage.setItem('token', res.data.token);
+                    localStorage.setItem('user_id', res.data.user_details.id);
+                    localStorage.setItem('username', res.data.user_details.username);
                     dispatch(history.push('/chat'));
                 }
                     

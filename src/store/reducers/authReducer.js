@@ -13,20 +13,15 @@ const authReducer = (state = initState, action) => {
     switch(action.type) {
         case 'REGISTER_USER':
             return { ...state, user_id: action.user_id, register_message: action.register_message }
-            break;
         case 'AUTHENTICATE_USER':
-            return { ...state, is_logged_in: action.is_logged_in, login_message: action.login_message };
-            break;
+            return { ...state, is_logged_in: action.is_logged_in, login_message: action.login_message }
         case 'CHECK_USERNAME_AVAILABILITY':
             return { ...state, is_username_available: action.is_username_available };
-            break;
         case 'IS_TOKEN_PRESENT':
             return { ...state, is_logged_in: action.is_logged_in };
-            break;
         default:
             return state;
     }
-    return state;
 }
 
 export default authReducer

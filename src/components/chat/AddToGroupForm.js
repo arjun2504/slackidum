@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Sidebar from './Sidebar';
 import UserQueue from './UserQueue';
 import { connect } from 'react-redux';
 import { createGroup } from '../../store/actions/chatActions';

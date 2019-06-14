@@ -24,6 +24,7 @@ class AddContactForm extends Component {
                 <h1 className="d-inline-block">Add Contacts</h1>
                 <button onClick={this.handleClick} className="btn btn-slcolor float-right p-2 mt-2"  type="button"><i className="fas fa-check-circle"></i> Save</button>
                 <div className="clearfix"></div>
+                <small className="text-danger">{ this.props.add_contacts_message }</small>
                 <UserQueue {...this.props} trackQueue={this.getQueue} />
             </div>
         )
@@ -37,7 +38,9 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        add_contacts_message: state.chat.add_contacts_message
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddContactForm)

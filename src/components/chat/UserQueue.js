@@ -59,12 +59,12 @@ class UserQueue extends Component {
                     <div className="col-md-6 col-sm-12">
                         <div className="user-suggest-container user-added-queue">
                             {
-                                (this.state.queue.length == 0) ? (<p className="text-muted" align="center">No users selected.</p>) : this.state.queue.map(r => (
+                                (this.state.queue.length === 0) ? (<p className="text-muted" align="center">No users selected.</p>) : this.state.queue.map(r => (
                                     <div className="user-result" onClick={() => this.handleRemoveQueue(r.username, r.id)} key={r.id}>{ r.username }<span className="text-success p-1 float-right fas fa-check"></span></div>
                                 ))
                             }
                             {
-                                (this.state.queue.length != 0) ? (<small className="text-muted"><center>Click on a username to remove from queue.</center></small>) : (<p></p>)
+                                (this.state.queue.length !== 0) ? (<small className="text-muted"><center>Click on a username to remove from queue.</center></small>) : (<p></p>)
                             }
                         </div>
                     </div>

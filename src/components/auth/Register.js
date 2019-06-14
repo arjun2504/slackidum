@@ -13,8 +13,8 @@ class Register extends Component {
 
     formValid() {
         var formValid = true;
-        if (this.props.is_username_available != true) { formValid = false; }
-        if (this.state.password != this.state.password2) { formValid = false; }
+        if (this.props.is_username_available !== true) { formValid = false; }
+        if (this.state.password !== this.state.password2) { formValid = false; }
         if (this.state.password.length < 6) { formValid = false; }
         if (this.state.username.length < 3) { formValid = false; }
         return formValid;
@@ -30,7 +30,7 @@ class Register extends Component {
     }
 
     render() {
-        const canBeSubmitted = this.formValid();
+        // const canBeSubmitted = this.formValid();
         return (
             <div className="container">
                 <div className="row justify-content-md-center">

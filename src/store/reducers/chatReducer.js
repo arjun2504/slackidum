@@ -13,22 +13,18 @@ const initState = {
 const chatReducer = (state = initState, action) => {
     switch(action.type) {
         case 'SUGGEST_USERS':
-            return { ...state, suggestions: action.suggestions };
-            break;
+            return { ...state, suggestions: action.suggestions }
         case 'ADD_TO_CONTACTS':
-            console.log(action.queue);
-            return { ...state, queue: action.queue };
-            break;
+            return { ...state, add_contacts_message: action.add_contacts_message }
         case 'CREATE_GROUP':
-            return { ...state, create_group_message: action.create_group_message };
-            break;
+            return { ...state, create_group_message: action.create_group_message }
         case 'GET_USER_GROUPS':
-            return { ...state, groups: action.groups };
-            break;
+            return { ...state, groups: action.groups }
+        case 'GET_USER_CONTACTS':
+            return { ...state, contacts: action.contacts }
         default:
             return state;
     }
-    return state;
 }
 
 

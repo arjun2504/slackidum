@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connectToRoom, sendMessage, preLoadMessages } from '../../store/actions/msgActions';
 import Moment from 'react-moment';
 
-class Chat extends Component {
+class GroupChat extends Component {
 
     state = {
         room_name: null,
@@ -71,25 +71,34 @@ class Chat extends Component {
                         <div className="col-md-6"></div>
                     </div>
                 </div>
-                <div className="chat-thread-container" id="threads">
-                    { (this.props.next_page !== null) && (<div className="text-center prev-message-link" onClick={() => this.loadPreviousMessage(this.props.next_page)}>Load previous messages</div>) }
-                    { this.props.chat_thread && this.props.chat_thread.map((t,i) => {
-                        if(t.room_name === this.props.room_name)
-                        return (
-                        <div className="media chat-message" key={'thread-' + i}>
-                            {/* <img src="https://via.placeholder.com/64" className="mr-3" alt="..." /> */}
-                            <div className={ (t.from_user == localStorage.username) ? 'media-body text-right' : 'media-body text-left' }>
-                                <h5 className="mt-0">{ t.from_user }</h5>
-                                { t.message }<br/>
-                                <small className="text-muted"><Moment fromNow>{ t.timestamp }</Moment></small>
-                            </div>
+                <div className="row no-gutters">
+                    <div className="col-md-8">
+                        <div className="chat-thread-container" id="threads">
+                            { (this.props.next_page !== null) && (<div className="text-center prev-message-link" onClick={() => this.loadPreviousMessage(this.props.next_page)}>Load previous messages</div>) }
+                            { this.props.chat_thread && this.props.chat_thread.map((t,i) => {
+                                if(t.room_name === this.props.room_name)
+                                return (
+                                <div className="media chat-message" key={'thread-' + i}>
+                                    {/* <img src="https://via.placeholder.com/64" className="mr-3" alt="..." /> */}
+                                    <div className={ (t.from_user == localStorage.username) ? 'media-body text-right' : 'media-body text-left' }>
+                                        <h5 className="mt-0">{ t.from_user }</h5>
+                                        { t.message }<br/>
+                                        <small className="text-muted"><Moment fromNow>{ t.timestamp }</Moment></small>
+                                    </div>
+                                </div>
+                            ) }) }
                         </div>
-                    ) }) }
-                </div>
-                <div className="chat-input-container">
-                    <form id="chat-input-form" onSubmit={this.handleSubmit}>
-                        <textarea onKeyUp={this.handleKey} className="form-control" rows="1" placeholder="Type a message..."></textarea>
-                    </form>
+                        <div className="chat-input-container">
+                            <form id="chat-input-form" onSubmit={this.handleSubmit}>
+                                <textarea onKeyUp={this.handleKey} className="form-control" rows="1" placeholder="Type a message..."></textarea>
+                            </form>
+                        </div>
+                    </div>
+                    <div className="col-md-4">
+                        <div className="group-sidebar">
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         ) : (
@@ -120,4 +129,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Chat))
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(GroupChat))
