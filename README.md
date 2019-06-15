@@ -1,7 +1,5 @@
 # slackidum
 
-(See demo)[http://139.59.79.241]
-
 Slackidum is a slack-like chat application where you can have a peer-to-peer conversation and also create groups and chat with group members. It is built with following technologies.
 
 - ReactJS and Redux
