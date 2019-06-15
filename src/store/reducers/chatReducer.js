@@ -1,13 +1,7 @@
 const initState = {
-    contacts: [
-        { id: 1, username: 'arjun', 'is_online': false },
-        { id: 2, username: 'john', 'is_online': false },
-        { id: 3, username: 'doe', 'is_online': false },
-    ],
-    groups: [
-        { id: 1, group: 'entertainment'},
-        { id: 2, group: 'education'},
-    ],
+    contacts: [],
+    members_list: [],
+    add_contacts_message: ''
 }
 
 function sortBy(key, data) {
@@ -25,10 +19,6 @@ const chatReducer = (state = initState, action) => {
             return { ...state, suggestions: final_suggestions }
         case 'ADD_TO_CONTACTS':
             return { ...state, add_contacts_message: action.add_contacts_message }
-        case 'CREATE_GROUP':
-            return { ...state, create_group_message: action.create_group_message }
-        case 'GET_USER_GROUPS':
-            return { ...state, groups: action.groups }
         case 'GET_USER_CONTACTS':
             return { ...state, contacts: action.contacts }
         case 'REFRESH_PRESENCE_STATUS':

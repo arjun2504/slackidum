@@ -1,9 +1,7 @@
 const initState = {
-    groups: [
-        { id: 1, group: 'entertainment'},
-        { id: 2, group: 'education'},
-    ],
+    groups: [],
     members_list: [],
+    create_group_message: ''
 }
 
 const groupReducer = (state = initState, action) => {

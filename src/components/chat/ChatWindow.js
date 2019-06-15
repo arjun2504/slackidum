@@ -25,6 +25,7 @@ class ChatWindow extends Component {
             </div>
         )
     }
+
 }
 
 export default withRouter(ChatWindow)

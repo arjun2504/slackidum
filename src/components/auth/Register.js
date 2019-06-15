@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { registerUser, checkAvailability } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Register extends Component {
 
@@ -33,27 +34,30 @@ class Register extends Component {
         // const canBeSubmitted = this.formValid();
         return (
             <div className="container">
-                <div className="row justify-content-md-center">
+                <div className="row justify-content-md-center page-container">
                     <div className="col col-md-6">
+                        <div className="sign-in-container">
                         <h1>Register</h1>
                         <hr/>
                         <form id="register-form" onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="name">Username</label>
-                                <input type="text" onChange={this.handleChange} className="form-control" id="username" aria-describedby="usernameHelp" placeholder="Pick a username" />
+                                <input required type="text" onChange={this.handleChange} className="form-control" id="username" aria-describedby="usernameHelp" placeholder="Pick a username" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
-                                <input type="password" onChange={this.handleChange} className="form-control" id="password" placeholder="Password" />
+                                <input required type="password" onChange={this.handleChange} className="form-control" id="password" placeholder="Password" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password2">Re-type Password</label>
-                                <input type="password" onChange={this.handleChange} className="form-control" id="password2" placeholder="Password" />
+                                <input required type="password" onChange={this.handleChange} className="form-control" id="password2" placeholder="Password" />
                             </div>
-                            
+                            <small id="emailHelp" className="form-text text-danger mb-3">{this.props.register_message}</small>
                             <button type="submit" className="btn btn-slcolor">Register</button>
-                            <small id="emailHelp" className="form-text text-danger">{this.props.register_message}</small>
+                            <p className="float-right mt-2">Returning user? <Link to="/">Login</Link></p>
+                            
                         </form>
+                        </div>
                     </div>
                 </div>
             </div>

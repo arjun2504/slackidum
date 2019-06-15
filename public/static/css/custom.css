@@ -91,7 +91,7 @@ a:hover {
 }
 .sidebar {
     width: 100%;
-    height: calc(100vh - 91px);
+    height: calc(100vh - 76px);
     background-color: #6a16c0;
     border-color: #4a0f87;
     border-width: 0px 1px;
@@ -99,7 +99,7 @@ a:hover {
     overflow-y: auto;
 }
 .sidebar-title {
-    padding: 20px;
+    padding: 10px 20px 20px 20px;
 }
 .sidebar-list {
     clear: both;
@@ -163,7 +163,6 @@ a:hover {
     padding: 50px 50px !important;
 }
 .chat-container {
-    margin-top: -3em;
     height: calc(100vh - 92px);
     margin-bottom: -60px;
 }
@@ -182,7 +181,7 @@ a:hover {
     top: 0px;
     overflow-y: auto;
     width: 100%;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 184px);
 }
 .chat-thread-container .chat-message {
     padding: 5px 20px;
@@ -244,8 +243,9 @@ a:hover {
     border-color: #4a0f87;
     border-width: 0px 1px;
     border-style: solid;
-    height: calc(100vh - 142px);
+    height: calc(100vh - 126px);
     color: #fff;
+    overflow-y: auto;
 }
 .add-more-members {
     padding: 0 17px;
@@ -275,4 +275,22 @@ a:hover {
     font-size: small;
     margin-right: 5px;
     color: #7f2cd4;
+}
+.user-avatar {
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #8043c1;
+}
+.sign-in-container {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #efefef;
+    border-radius: 10px;
+    height: auto;
+}
+.page-container {
+    background-color: #d9d5efc7;
+    min-height: calc(100vh - 76px);
+    padding: 75px;
+    border: 1px solid #d6d6d6;
 }

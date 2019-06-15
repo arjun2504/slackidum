@@ -29,8 +29,8 @@ class Login extends Component {
             
         return (
             <div className="container">
-                <div className="row">
-                    <div className="col-7">
+                <div className="row page-container">
+                    <div className="col-md-7">
                     <div className="">
                         <h1 className="display-4">Hi! There?</h1>
                         <img alt="Logo" src="/static/images/slackidum-banner.png" className="homepage-banner" />
@@ -40,23 +40,28 @@ class Login extends Component {
                         <Link className="btn btn-success btn-lg" to="/about">Learn more</Link>
                     </div>
                     </div>
-                    <div className="col-5">
-                        <h2>Sign In <i className="fas fa-sign-in-alt"></i></h2>
-                        <hr/>
-                        <form id="login-form" onSubmit={this.handleSubmit}>
-                            <div className="form-group">
-                                <label htmlFor="username">Username</label>
-                                <input type="text" onChange={this.handleChange} className="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter username" />
-                                {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="exampleInputPassword1">Password</label>
-                                <input type="password" onChange={this.handleChange} className="form-control" id="password" placeholder="Password" />
-                            </div>
-                            <button type="submit" className="btn btn-slcolor">Sign In</button>
-                            <small id="loginHelp" className="form-text text-danger">{this.props.login_message}</small>
-                        </form>
+                    <div className="col-md-5">
+                        <div className="sign-in-container">
+                            <h2>Sign In <i className="fas fa-sign-in-alt"></i></h2>
+                            <hr/>
+                            <form id="login-form" onSubmit={this.handleSubmit}>
+                                <div className="form-group">
+                                    <label htmlFor="username">Username</label>
+                                    <input type="text" onChange={this.handleChange} className="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter username" />
+                                    {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="exampleInputPassword1">Password</label>
+                                    <input type="password" onChange={this.handleChange} className="form-control" id="password" placeholder="Password" />
+                                </div>
+                                <button type="submit" className="btn btn-slcolor">Sign In</button>
+                                <p className="float-right pt-2">New user? <Link to="/register">Register here</Link></p>
+                                <small id="loginHelp" className="form-text text-danger">{this.props.login_message}</small>
+                            </form>
+
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         )

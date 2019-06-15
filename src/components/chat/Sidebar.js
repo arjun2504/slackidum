@@ -5,32 +5,43 @@ import { getUserContacts } from '../../store/actions/chatActions'
 import { getUserGroups } from '../../store/actions/groupActions'
 import { DJANGO_ENDPOINT, DJANGO_WS_ENDPOINT } from '../../constants'
 
+
 class Sidebar extends Component {
-    
+
     componentDidMount() {
         this.props.getUserGroups();
         this.props.getUserContacts();
 
         var opSocket = new WebSocket(DJANGO_WS_ENDPOINT + 'presence/' + localStorage.username + '/');
 
+        opSocket.onclose = function(e) {
+            console.log('offline');
+        }.bind(this);
+
         opSocket.onmessage = function(e) {
             var data = JSON.parse(e.data);
             this.props.getUserContacts();
         }.bind(this);
 
-        opSocket.onclose = function(e) {
-            console.log('offline');
-        }.bind(this);
+        // this.onlinePresence('login');
     }
 
     handleClick = (room_type) => {
         this.props.room_type(room_type);
     }
 
+
+    componentWillUnmount() {
+        this.props.getUserContacts();
+    }
+
     render() {
         return (
             <div className="col-md-4 col-sm-12 sidebar text-light">
-                <div className=""></div>
+                <div className="user-avatar shadow-lg">
+                    <i className="online-icon fas fa-circle"></i> { localStorage.username }
+                    <Link to="/logout" title="Logout"><h4 className="fas fa-power-off float-right text-white pt-1"></h4></Link>
+                </div>
                 <div className="sidebar-title">
                     <h3 className="float-left"><i className="fas fa-users"></i> Groups</h3>
                     <Link to="/add-group" className="sidebar-btn"><h3><i className="fas fa-plus float-right"></i></h3></Link>
@@ -52,7 +63,7 @@ class Sidebar extends Component {
                 <div className="sidebar-list">
                     <div className="list-group">
                         {
-                            (this.props.groups.length > 0) ? this.props.contacts.map(contact => (
+                            (this.props.contacts.length > 0) ? this.props.contacts.map(contact => (
                                 <NavLink onClick={() => this.handleClick('chat')} key={contact.id} to={ "/chat/" + contact.username} className="list-group-item list-group-item-action"><span className={(contact.is_online) ? 'online-icon' : 'offline-icon'}><i className="fas fa-circle"></i></span> {contact.username}</NavLink>
                             )) : (<small className="text-slmuted text-center">There are no contacts added.<br/>Click + icon to add contacts.</small>)
                         }

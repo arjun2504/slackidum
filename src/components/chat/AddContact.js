@@ -3,7 +3,6 @@ import Sidebar from './Sidebar';
 import AddContactForm from './AddContactForm';
 
 class AddContact extends Component {
-
     state = {
         room_type: 'chat'
     }
