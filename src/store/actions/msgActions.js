@@ -1,5 +1,6 @@
 import axios from 'axios';
 import history from '../../history';
+import { DJANGO_ENDPOINT, DJANGO_WS_ENDPOINT } from '../../constants'
 
 var chatSocket = null;
 
@@ -22,7 +23,7 @@ export const connectToRoom = (username, room_type) => {
         
         
 
-        axios.get('http://localhost:8000/api/current-user/', {
+        axios.get(DJANGO_ENDPOINT + 'current-user/', {
             params: { type: 'self_info' },
             headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
         }).then(res => {
@@ -33,7 +34,7 @@ export const connectToRoom = (username, room_type) => {
                 if(chatSocket !== null) {
                     chatSocket.close();
                 }
-                chatSocket = new WebSocket('ws://localhost:8000/ws/chat/' + room_name + '/' + res.data.username + '/');
+                chatSocket = new WebSocket(DJANGO_WS_ENDPOINT + 'chat/' + room_name + '/' + res.data.username + '/');
         
                 chatSocket.onmessage = function(e) {
                     var data = JSON.parse(e.data);
@@ -89,7 +90,7 @@ export const preLoadMessages = (user, room_type, page_number) => {
     return (dispatch) => {
         var room_name = getRoomName(user, room_type);
         var p = (page_number) ? page_number : 1;
-        axios.post('http://localhost:8000/api/get-convo/?page=' + p, 
+        axios.post(DJANGO_ENDPOINT + 'get-convo/?page=' + p, 
                 { chat_room: room_name },
                 { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
         }).then(res => {

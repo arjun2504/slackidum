@@ -3,6 +3,7 @@ import { NavLink, Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getUserContacts } from '../../store/actions/chatActions'
 import { getUserGroups } from '../../store/actions/groupActions'
+import { DJANGO_ENDPOINT, DJANGO_WS_ENDPOINT } from '../../constants'
 
 class Sidebar extends Component {
     
@@ -10,7 +11,7 @@ class Sidebar extends Component {
         this.props.getUserGroups();
         this.props.getUserContacts();
 
-        var opSocket = new WebSocket('ws://localhost:8000/ws/presence/' + localStorage.username + '/');
+        var opSocket = new WebSocket(DJANGO_WS_ENDPOINT + 'presence/' + localStorage.username + '/');
 
         opSocket.onmessage = function(e) {
             var data = JSON.parse(e.data);
@@ -29,6 +30,7 @@ class Sidebar extends Component {
     render() {
         return (
             <div className="col-md-4 col-sm-12 sidebar text-light">
+                <div className=""></div>
                 <div className="sidebar-title">
                     <h3 className="float-left"><i className="fas fa-users"></i> Groups</h3>
                     <Link to="/add-group" className="sidebar-btn"><h3><i className="fas fa-plus float-right"></i></h3></Link>

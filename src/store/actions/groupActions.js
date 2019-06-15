@@ -1,9 +1,10 @@
 import axios from 'axios';
 import history from '../../history';
+import { DJANGO_ENDPOINT, DJANGO_WS_ENDPOINT } from '../../constants'
 
 export const addMember = (user, group) => {
     return (dispatch) => {
-        axios.post('http://localhost:8000/api/group/' + group + '/add-user/',
+        axios.post(DJANGO_ENDPOINT + 'group/' + group + '/add-user/',
                     { user_ids: [ user ] },
                     { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
             }).then(res => {
@@ -19,7 +20,7 @@ export const addMember = (user, group) => {
 
 export const getGroupMembers = (group) => {
     return (dispatch) => {
-        axios.get('http://localhost:8000/api/members/' + group + '/', {
+        axios.get(DJANGO_ENDPOINT + 'members/' + group + '/', {
             headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
         }).then(res => {
             dispatch({
@@ -35,7 +36,7 @@ export const getGroupMembers = (group) => {
 export const createGroup = (queue, group_name) => {
     return (dispatch) => {
         var user_ids = queue.map(item => item.id);
-        axios.post('http://localhost:8000/api/group/create/',
+        axios.post(DJANGO_ENDPOINT + 'group/create/',
                     { user_ids: user_ids, name: group_name },
                     { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
         }).then(res => {
@@ -62,7 +63,7 @@ export const createGroup = (queue, group_name) => {
 
 export const getUserGroups = () => {
     return (dispatch) => {
-        axios.get('http://localhost:8000/api/current-user/', {
+        axios.get(DJANGO_ENDPOINT + 'current-user/', {
             params: { type: 'user_groups' },
             headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
         }).then(res => {

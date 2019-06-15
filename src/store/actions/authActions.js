@@ -1,9 +1,10 @@
 import axios from 'axios';
 import history from '../../history';
+import { DJANGO_ENDPOINT, DJANGO_WS_ENDPOINT } from '../../constants'
 
 export const registerUser = (user) => {
     return (dispatch, getState) => {
-        axios.post(`http://localhost:8000/api/user/`, {
+        axios.post(DJANGO_ENDPOINT + 'user/', {
             username: user.username,
             password: user.password
         }).then(res => {
@@ -20,7 +21,7 @@ export const registerUser = (user) => {
 export const authenticateUser = (credentials) => {
     return (dispatch, getState) => {
         
-        axios.post(`http://localhost:8000/api/auth/`, { 
+        axios.post(DJANGO_ENDPOINT + 'auth/', { 
                 username: credentials.username, password: credentials.password 
             })
             .then(res => {
@@ -46,7 +47,7 @@ export const authenticateUser = (credentials) => {
 export const checkAvailability = (registration_data) => {
     return (dispatch, getState) => {
         
-        axios.post(`http://localhost:8000/api/username/check/`, { username: registration_data.username })
+        axios.post(DJANGO_ENDPOINT + '/username/check/', { username: registration_data.username })
             .then(res => {
                 dispatch({
                     type: 'CHECK_USERNAME_AVAILABILITY',

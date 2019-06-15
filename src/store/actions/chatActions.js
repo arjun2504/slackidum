@@ -1,5 +1,6 @@
 import axios from 'axios';
 import history from '../../history';
+import { DJANGO_ENDPOINT, DJANGO_WS_ENDPOINT } from '../../constants'
 
 var opSocket = null;
 
@@ -7,7 +8,7 @@ export const getUserSuggestions = (keyword, exclusions) => {
     return (dispatch, getState) => {
 
         (keyword.length > 0) ? 
-        axios.get('http://localhost:8000/api/user/', {
+        axios.get(DJANGO_ENDPOINT + 'user/', {
                 params: {
                     search: keyword
                 },
@@ -37,7 +38,7 @@ export const getUserSuggestions = (keyword, exclusions) => {
 export const addToContacts = (queue) => {
     return (dispatch) => {
         var user_ids = queue.map(item => item.id);
-        axios.post('http://localhost:8000/api/add-contact/', 
+        axios.post(DJANGO_ENDPOINT + 'add-contact/', 
                 { user_ids: user_ids },
                 { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
         }).then(res => {
@@ -64,7 +65,7 @@ export const addToContacts = (queue) => {
 
 export const getUserContacts = () => {
     return (dispatch) => {
-        axios.get('http://localhost:8000/api/current-user/', {
+        axios.get(DJANGO_ENDPOINT + 'current-user/', {
             params: { type: 'user_contacts' },
             headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
         }).then(res => {
