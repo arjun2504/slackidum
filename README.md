@@ -1,5 +1,7 @@
 # slackidum
 
+(See demo)[http://139.59.79.241]
+
 Slackidum is a slack-like chat application where you can have a peer-to-peer conversation and also create groups and chat with group members. It is built with following technologies.
 
 - ReactJS and Redux
@@ -7,6 +9,8 @@ Slackidum is a slack-like chat application where you can have a peer-to-peer con
 - Uses Django as a backend [[slackidum-backend](https://github.com/arjun2504/slackidum-backend)]
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+See: [Demo](http://139.59.79.241)
 
 # Installation
 
