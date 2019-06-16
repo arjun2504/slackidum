@@ -24,6 +24,13 @@ class Register extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        var error_msg = '';
+        if(this.state.password !== this.state.password2) {
+            error_msg = 'Both passwords must match';
+            document.getElementById('registerHelp').innerHTML = error_msg;
+            return false;
+        }
+
         this.props.registerUser(this.state);
     }
 
@@ -54,7 +61,7 @@ class Register extends Component {
                                 <label htmlFor="password2">Re-type Password</label>
                                 <input required type="password" onChange={this.handleChange} className="form-control" id="password2" placeholder="Password" />
                             </div>
-                            <small id="emailHelp" className="form-text text-danger mb-3">{this.props.register_message}</small>
+                            <small id="registerHelp" className="form-text text-danger mb-3">{this.props.register_message}</small>
                             <div className="row">
                                 <div className="col-md-6 col-sm-8 col-xs-12">
                                     <button type="submit" disabled={this.formValid} className="btn btn-slcolor">Register</button>
