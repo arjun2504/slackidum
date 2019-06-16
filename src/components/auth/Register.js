@@ -36,7 +36,7 @@ class Register extends Component {
         return (
             <div className="container">
                 <div className="row justify-content-md-center vertical-center">
-                    <div className="col-md-5 col-sm-12">
+                    <div className="col-lg-6 col-md-8 col-sm-12 col-xs-12">
                     <div className="text-center"><img src={logo} className="d-inline-block align-top pr-2" alt="" /> </div>
                         <div className="sign-in-container shadow-lg">
                         <h1>Register</h1>
@@ -55,9 +55,14 @@ class Register extends Component {
                                 <input required type="password" onChange={this.handleChange} className="form-control" id="password2" placeholder="Password" />
                             </div>
                             <small id="emailHelp" className="form-text text-danger mb-3">{this.props.register_message}</small>
-                            <button type="submit" className="btn btn-slcolor">Register</button>
-                            <p className="float-right mt-2">Returning user? <Link to="/">Login</Link></p>
-                            
+                            <div className="row">
+                                <div className="col-md-6 col-sm-8 col-xs-12">
+                                    <button type="submit" disabled={this.formValid} className="btn btn-slcolor">Register</button>
+                                </div>
+                                <div className="col-md-6 col-sm-4 col-xs-12">
+                                    <p className="float-right mt-2">Returning user? <Link to="/">Login</Link></p>
+                                </div>
+                            </div>
                         </form>
                         </div>
                     </div>
