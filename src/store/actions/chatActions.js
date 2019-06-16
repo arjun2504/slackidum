@@ -63,7 +63,7 @@ export const addToContacts = (queue) => {
     }
 }
 
-export const getUserContacts = () => {
+export const getUserContacts = (contact_list) => {
     return (dispatch) => {
         axios.get(DJANGO_ENDPOINT + 'current-user/', {
             params: { type: 'user_contacts' },
@@ -71,10 +71,11 @@ export const getUserContacts = () => {
         }).then(res => {
             dispatch({
                 type: 'GET_USER_CONTACTS',
-                contacts: res.data
+                contacts: res.data,
+                old_contacts: (contact_list) ? contact_list : []
             });
         }).catch(e => {
-            (e.response.status === 403) ? history.push('/logout') : console.log(e);
+            (e.response && e.response.status === 403) ? history.push('/logout') : console.log(e);
         });
     }
 }

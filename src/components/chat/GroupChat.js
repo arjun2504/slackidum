@@ -51,8 +51,8 @@ class GroupChat extends Component {
     }
 
     handleKey = (e) => {
-        if(e.keyCode === 13) {
-            this.props.sendMessage(this.state.message.trim(), this.props.slug, this.state.room_type);
+        if(e.keyCode === 13  && !e.shiftKey) {
+            this.props.sendMessage(this.state.message.trim(), this.props.slug);
             document.getElementById('chat-input-form').reset();
             this.autoScrollToTop();
         }

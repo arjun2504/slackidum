@@ -48,8 +48,9 @@ class Chat extends Component {
     }
 
     handleKey = (e) => {
-        if(e.keyCode === 13) {
-            this.props.sendMessage(this.state.message.trim(), this.props.slug, this.state.room_type);
+        if(e.keyCode === 13 && !e.shiftKey) {
+            console.log('send: ' + this.props.username);
+            this.props.sendMessage(this.state.message.trim(), this.props.slug, this.props.username);
             document.getElementById('chat-input-form').reset();
             this.autoScrollToTop();
         }
@@ -115,7 +116,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        sendMessage: (message, room_name) => dispatch(sendMessage(message, room_name)),
+        sendMessage: (message, room_name, to_user) => dispatch(sendMessage(message, room_name, to_user)),
         connectToRoom: (username, room_type) => dispatch(connectToRoom(username, room_type)),
         preLoadMessages: (username, room_type, page_number) => dispatch(preLoadMessages(username, room_type, page_number))
     }

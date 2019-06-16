@@ -65,18 +65,26 @@ export const connectToRoom = (username, room_type) => {
     }
 }
 
-export const sendMessage = (message, room_name) => {
+export const sendMessage = (message, room_name, to_user) => {
     return (dispatch) => {
         if(localStorage.token == null)
             history.push('/logout');
-        
-        if(message !== "") {
+        else if(message !== "") {
+
             chatSocket.send(JSON.stringify({
                     'data': {
                         'message': message,
                         'room_name': room_name
                     }
             }));
+
+            if(to_user) {
+                var notifySocket = new WebSocket(DJANGO_WS_ENDPOINT + 'newmsg/' + to_user + '/');
+                notifySocket.onopen = function(e) {
+                    notifySocket.send(JSON.stringify({ 'from_user': localStorage.username }));    
+                    notifySocket.close();
+                };
+            }
 
             dispatch({
                 type: 'SEND_MESSAGE',
