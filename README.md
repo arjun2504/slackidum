@@ -28,6 +28,6 @@ See: [Demo](http://139.59.79.241)
     ```
     
 # Deployment
-You can deploy the application by using `npm run build` which creates a *build* directory inside the applciation. You can use your favorite HTTP server to point to that directory.
+You can deploy the application by using `npm run build` which creates a *build* directory inside the application. You can use your favorite HTTP server to point to that directory.
 
 # You're done!
