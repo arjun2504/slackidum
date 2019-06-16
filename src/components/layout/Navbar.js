@@ -5,6 +5,7 @@ import logo from '../../slackidum-logo.png';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { checkIfTokenPresent } from '../../store/actions/authActions';
+import GitHubButton from 'react-github-btn';
 
 class Navbar extends Component {
 
@@ -16,10 +17,14 @@ class Navbar extends Component {
                 <Link className="navbar-brand mr-auto" to="/">
                     <img src={logo} className="d-inline-block align-top pr-2" alt="" /> 
                 </Link>
-                {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button> */}
-                {/* { (this.props.is_logged_in) ? (<SignedInLinks />) : (<SignedOutLinks />) } */}
+                <div className="justify-content-end" id="navbarSupportedContent">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            {/* <NavLink to="/logout" className="nav-link" title="Sign out"><i className="fas fa-sign-out-alt"></i> Sign out</NavLink> */}
+                            <GitHubButton href="https://github.com/arjun2504/slackidum/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork arjun2504/slackidum on GitHub">Fork on GitHub</GitHubButton>
+                        </li>
+                    </ul>    
+                </div>
                 </div>
             </nav>
         )
