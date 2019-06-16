@@ -41,7 +41,7 @@ class GroupChat extends Component {
     }
 
     componentDidUpdate() {
-        if((this.state.chat_thread.length !== this.props.chat_thread) && (this.state.next_page == this.props.next_page)) {
+        if((this.state.chat_thread.length !== this.props.chat_thread) && (this.state.next_page === this.props.next_page)) {
             this.autoScrollToTop();
         }
     }
@@ -73,7 +73,7 @@ class GroupChat extends Component {
                 <div className="chat-thread-header shadow-sm">
                     <div className="row">
                         <div className="col-md-6 p-2 ml-4">
-                            <h5>{ (this.state.room_type == 'group') ? '#' : '' } { this.props.username }</h5>
+                            <h5>{ (this.state.room_type === 'group') ? '#' : '' } { this.props.username }</h5>
                         </div>
                         <div className="col-md-6"></div>
                     </div>
@@ -87,9 +87,9 @@ class GroupChat extends Component {
                                 return (
                                 <div className="media chat-message" key={'thread-' + i}>
                                     {/* <img src="https://via.placeholder.com/64" className="mr-3" alt="..." /> */}
-                                    <div className={ (t.from_user == localStorage.username) ? 'media-body text-right' : 'media-body text-left' }>
+                                    <div className={ (t.from_user === localStorage.username) ? 'media-body text-right' : 'media-body text-left' }>
                                         <h5 className="mt-0">
-                                        { (t.from_user == localStorage.username) ? ('me') : (<Link to={'/chat/' + t.from_user } onClick={() => this.handleRoomType('chat')} disabled={(t.from_user == localStorage.username) ? true : false }>{ t.from_user }</Link>) }
+                                        { (t.from_user === localStorage.username) ? ('me') : (<Link to={'/chat/' + t.from_user } onClick={() => this.handleRoomType('chat')} disabled={(t.from_user === localStorage.username) ? true : false }>{ t.from_user }</Link>) }
                                         </h5>
                                         { t.message }<br/>
                                         <small className="text-muted"><Moment fromNow>{ t.timestamp }</Moment></small>

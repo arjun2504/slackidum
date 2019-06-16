@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../../history';
-import { DJANGO_ENDPOINT, DJANGO_WS_ENDPOINT } from '../../constants'
+import { DJANGO_ENDPOINT } from '../../constants'
 
 export const addMember = (user, group) => {
     return (dispatch) => {

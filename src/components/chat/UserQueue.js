@@ -45,7 +45,7 @@ class UserQueue extends Component {
                         <form id="user-suggest-form" onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                     <label htmlFor="name">Start typing a name...</label>
-                                    <input type="text" onChange={this.handleChange} className="form-control" id="name" aria-describedby="name" placeholder="Enter username..." />
+                                    <input type="text" autocomplete="off" onChange={this.handleChange} className="form-control" id="name" aria-describedby="name" placeholder="Enter username..." />
                             </div>
                         </form>
                         <div className="user-suggest-container">

@@ -36,8 +36,6 @@ class Login extends Component {
                     <div className="col-sm-12 col-md-5">
                         <div className="text-center"><img src={logo} className="d-inline-block align-top pr-2" alt="" /> </div>
                         <div className="sign-in-container shadow-lg">
-                            {/* <h2>Sign In <i className="fas fa-sign-in-alt"></i></h2>
-                            <hr/> */}
                             <form id="login-form" onSubmit={this.handleSubmit}>
                                 <div className="form-group">
                                     <label htmlFor="username">Username</label>
@@ -49,10 +47,10 @@ class Login extends Component {
                                     <input type="password" onChange={this.handleChange} className="form-control" id="password" placeholder="Password" />
                                 </div>
                                 <div className="row">
-                                <div className="col-md-6 col-sm-12">
+                                <div className="col-md-5">
                                     <button type="submit" className="btn btn-slcolor">Sign In</button>
                                 </div>
-                                <div className="col-md-6 col-sm-12">
+                                <div className="col-md-7">
                                     <p className="float-right pt-2">New user? <Link to="/register">Register here</Link></p>
                                 </div>
                                 </div>

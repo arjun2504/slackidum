@@ -3,7 +3,7 @@ import { NavLink, Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getUserContacts } from '../../store/actions/chatActions'
 import { getUserGroups } from '../../store/actions/groupActions'
-import { DJANGO_ENDPOINT, DJANGO_WS_ENDPOINT } from '../../constants'
+import { DJANGO_WS_ENDPOINT } from '../../constants'
 // import { opSocket, nmSocket } from './sockets';
 
 
@@ -20,17 +20,16 @@ class Sidebar extends Component {
         this.props.getUserContacts();
 
         this.pres.onmessage = function(e) { console.log('new online user'); this.props.getUserContacts(); }.bind(this);
-        this.pres.onclose = function(e) { console.log('stopped showing online users'); }.bind(this);
+        this.pres.onclose = function(e) { console.log('stopped showing online users'); };
 
         this.newmsg.onmessage = function(e) {
             var from_user = JSON.parse(e.data).message;
             this.props.getUserContacts(JSON.parse(e.data).message);
-            console.log(this.props.match.params.username);
-            if(from_user !== this.props.username) {
+            // console.log(this.props.username, from_user);
+            if(this.props.match.params.group || from_user !== this.props.match.params.username) {
                 setTimeout(() => {
-                    var elem = document.getElementsByClassName('username-here').length;
                     for(var i=0; i<document.getElementsByClassName('username-here').length; i++) {
-                        if(document.getElementsByClassName('username-here')[i].innerHTML == from_user) {
+                        if(document.getElementsByClassName('username-here')[i].innerHTML === from_user) {
                             document.getElementById('audio').play();
                             document.getElementsByClassName('username-here')[i].parentNode.classList.add('new-msg-highlight');
                         }
@@ -38,7 +37,7 @@ class Sidebar extends Component {
                 }, 1000);
             }
         }.bind(this);
-        this.newmsg.onclose = function(e) { console.log('stopped notifying new messages'); }.bind(this);
+        this.newmsg.onclose = function(e) { console.log('stopped notifying new messages'); };
 
     }
 

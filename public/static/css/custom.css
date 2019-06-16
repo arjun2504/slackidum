@@ -307,7 +307,10 @@ a:hover {
   
     display: flex;
     align-items: center;
-  }
-  #contact-list {
+}
+#contact-list {
     margin-bottom: 20px;
-  }
+}
+button::-moz-focus-inner {
+    border: 0;
+}  

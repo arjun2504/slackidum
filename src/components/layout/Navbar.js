@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import SignedInLinks from './SignedInLinks';
-import SignedOutLinks from './SignedOutLinks';
 import logo from '../../slackidum-logo.png';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -11,7 +9,7 @@ class Navbar extends Component {
 
     render() {
         
-        return (this.props.location.pathname == '/register' || this.props.location.pathname == '/') ? (<span></span>) : (
+        return (this.props.location.pathname === '/register' || this.props.location.pathname === '/') ? (<span></span>) : (
             <nav className="navbar navbar-expand-lg bg-light shadow-sm bg-white">
                 <div className="container">
                 <Link className="navbar-brand mr-auto" to="/">
@@ -20,7 +18,6 @@ class Navbar extends Component {
                 <div className="justify-content-end" id="navbarSupportedContent">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            {/* <NavLink to="/logout" className="nav-link" title="Sign out"><i className="fas fa-sign-out-alt"></i> Sign out</NavLink> */}
                             <GitHubButton href="https://github.com/arjun2504/slackidum/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork arjun2504/slackidum on GitHub">Fork on GitHub</GitHubButton>
                         </li>
                     </ul>    
