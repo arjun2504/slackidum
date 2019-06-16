@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { registerUser, checkAvailability } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import logo from '../../slackidum-logo.png';
 
 class Register extends Component {
 
@@ -34,9 +35,10 @@ class Register extends Component {
         // const canBeSubmitted = this.formValid();
         return (
             <div className="container">
-                <div className="row justify-content-md-center page-container">
-                    <div className="col col-md-6">
-                        <div className="sign-in-container">
+                <div className="row justify-content-md-center vertical-center">
+                    <div className="col-md-5 col-sm-12">
+                    <div className="text-center"><img src={logo} className="d-inline-block align-top pr-2" alt="" /> </div>
+                        <div className="sign-in-container shadow-lg">
                         <h1>Register</h1>
                         <hr/>
                         <form id="register-form" onSubmit={this.handleSubmit}>

@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authenticateUser } from '../../store/actions/authActions';
+import logo from '../../slackidum-logo.png';
 
 class Login extends Component {
 
     state = {
         username: '',
-        password: ''
+        password: '',
+        isNavBarHidden: true
     }
 
     handleSubmit = (e) => {
@@ -28,22 +30,14 @@ class Login extends Component {
             )
             
         return (
-            <div className="container">
-                <div className="row page-container">
-                    <div className="col-md-7">
-                    <div className="">
-                        <h1 className="display-4">Hi! There?</h1>
-                        <img alt="Logo" src="/static/images/slackidum-banner.png" className="homepage-banner" />
-                        <p className="lead">Say Hi! to your friends, family or colleagues. You can use Slackidum at any place.</p>
-                        <hr className="my-4" />
-                        <p>Learn more about the features.</p>
-                        <Link className="btn btn-success btn-lg" to="/about">Learn more</Link>
-                    </div>
-                    </div>
-                    <div className="col-md-5">
-                        <div className="sign-in-container">
-                            <h2>Sign In <i className="fas fa-sign-in-alt"></i></h2>
-                            <hr/>
+            <div className="container ">
+                <div className="row justify-content-md-center vertical-center">
+                    
+                    <div className="col-sm-12 col-md-5">
+                        <div className="text-center"><img src={logo} className="d-inline-block align-top pr-2" alt="" /> </div>
+                        <div className="sign-in-container shadow-lg">
+                            {/* <h2>Sign In <i className="fas fa-sign-in-alt"></i></h2>
+                            <hr/> */}
                             <form id="login-form" onSubmit={this.handleSubmit}>
                                 <div className="form-group">
                                     <label htmlFor="username">Username</label>
@@ -54,8 +48,14 @@ class Login extends Component {
                                     <label htmlFor="exampleInputPassword1">Password</label>
                                     <input type="password" onChange={this.handleChange} className="form-control" id="password" placeholder="Password" />
                                 </div>
-                                <button type="submit" className="btn btn-slcolor">Sign In</button>
-                                <p className="float-right pt-2">New user? <Link to="/register">Register here</Link></p>
+                                <div className="row">
+                                <div className="col-md-6 col-sm-12">
+                                    <button type="submit" className="btn btn-slcolor">Sign In</button>
+                                </div>
+                                <div className="col-md-6 col-sm-12">
+                                    <p className="float-right pt-2">New user? <Link to="/register">Register here</Link></p>
+                                </div>
+                                </div>
                                 <small id="loginHelp" className="form-text text-danger">{this.props.login_message}</small>
                             </form>
 

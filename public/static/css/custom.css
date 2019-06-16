@@ -301,3 +301,13 @@ a:hover {
     -webkit-transition: all .2s ease-in;
     transition: all .2s ease-in;
 }
+.vertical-center {
+    /* min-height: 100%;  Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+  
+    display: flex;
+    align-items: center;
+  }
+  #contact-list {
+    margin-bottom: 20px;
+  }

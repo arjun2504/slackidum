@@ -11,10 +11,10 @@ import Logout from './components/auth/Logout';
 import PrivateRoute from './components/auth/PrivateRoute';
 import history from './history';
 
-function App() {
+const App = (props) => {
   return (
     <Router history={history}>
-      <Navbar/>
+      <Navbar />
       <Switch>
           <Route exact path="/" component={Login} />
           <Route path="/register" component={Register} />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connectToRoom, sendMessage, preLoadMessages } from '../../store/actions/msgActions';
 import Moment from 'react-moment';
 import AddMoreMembers from "./AddMoreMembers";
@@ -88,7 +88,9 @@ class GroupChat extends Component {
                                 <div className="media chat-message" key={'thread-' + i}>
                                     {/* <img src="https://via.placeholder.com/64" className="mr-3" alt="..." /> */}
                                     <div className={ (t.from_user == localStorage.username) ? 'media-body text-right' : 'media-body text-left' }>
-                                        <h5 className="mt-0">{ t.from_user }</h5>
+                                        <h5 className="mt-0">
+                                        { (t.from_user == localStorage.username) ? ('me') : (<Link to={'/chat/' + t.from_user } onClick={() => this.handleRoomType('chat')} disabled={(t.from_user == localStorage.username) ? true : false }>{ t.from_user }</Link>) }
+                                        </h5>
                                         { t.message }<br/>
                                         <small className="text-muted"><Moment fromNow>{ t.timestamp }</Moment></small>
                                     </div>

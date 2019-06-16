@@ -9,7 +9,8 @@ import { checkIfTokenPresent } from '../../store/actions/authActions';
 class Navbar extends Component {
 
     render() {
-        return (
+        
+        return (this.props.location.pathname == '/register' || this.props.location.pathname == '/') ? (<span></span>) : (
             <nav className="navbar navbar-expand-lg bg-light shadow-sm bg-white">
                 <div className="container">
                 <Link className="navbar-brand mr-auto" to="/">
