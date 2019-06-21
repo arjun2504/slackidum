@@ -8,8 +8,6 @@ Slackidum is a slack-like chat application where you can have a peer-to-peer con
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-See: [Demo](http://139.59.79.241)
-
 # Installation
 
 1. Install latest version of [NodeJS](https://nodejs.org/en/) on your machine globally.
